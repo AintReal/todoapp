@@ -3,8 +3,9 @@ const input = document.getElementById("todoInput");
 const list = document.getElementById("todoList");
 const empty = document.getElementById("empty");
 const clearAllBtn = document.getElementById("clearAll");
+const checkAllBtn = document.getElementById("checkAll");
 
-let todos = [];
+let todos = JSON.parse(localStorage.getItem("todos")) || [];
 
 form.addEventListener("submit", function (e) {
   e.preventDefault();
@@ -24,7 +25,13 @@ clearAllBtn.addEventListener("click", function () {
   }
 });
 
+checkAllBtn.addEventListener("click", function () {
+  todos.forEach((t) => (t.done = true));
+  render();
+});
+
 function render() {
+  localStorage.setItem("todos", JSON.stringify(todos));
   list.innerHTML = "";
 
   if (todos.length === 0) {
