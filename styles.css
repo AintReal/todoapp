@@ -111,6 +111,11 @@ button:hover {
   display: none;
 }
 
-#clearAll {
-  width: 100%;
+.actions {
+  display: flex;
+  gap: 8px;
+}
+
+.actions button {
+  flex: 1;
 }

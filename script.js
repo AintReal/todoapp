@@ -26,12 +26,15 @@ clearAllBtn.addEventListener("click", function () {
 });
 
 checkAllBtn.addEventListener("click", function () {
-  todos.forEach((t) => (t.done = true));
+  const allDone = todos.length > 0 && todos.every((t) => t.done);
+  todos.forEach((t) => (t.done = !allDone));
   render();
 });
 
 function render() {
   localStorage.setItem("todos", JSON.stringify(todos));
+  checkAllBtn.textContent =
+    todos.length > 0 && todos.every((t) => t.done) ? "Uncheck all" : "Check all";
   list.innerHTML = "";
 
   if (todos.length === 0) {
